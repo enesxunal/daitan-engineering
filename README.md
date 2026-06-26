@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# GTÜ Kfz-Prüfstelle Wesseling
 
-## Getting Started
+Website mit Online-Terminbuchung für HU/AU.
 
-First, run the development server:
+## Schnellstart
 
 ```bash
+npm install
+npm run db:setup
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Öffnen: http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Admin Panel
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- URL: http://localhost:3000/admin
+- Login: `admin@example.com` / `admin123` (siehe `.env`)
 
-## Learn More
+## Funktionen
 
-To learn more about Next.js, take a look at the following resources:
+- **Öffentliche Website** (Deutsch): Startseite, Leistungen, Über uns, Kontakt, Impressum, Datenschutz
+- **Online-Terminbuchung**: 30-Minuten-Slots, 1 Prüfspur
+- **Fahrzeugauswahl**: Marken & Modelle aus Datenbank
+- **E-Mail**: Bestätigung, Stornierung, Änderung (Resend – optional)
+- **Admin**: Kalender (Monat freigeben, Tage schließen, Sonderzeiten), Terminliste, Einstellungen
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Umgebungsvariablen
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Kopieren Sie `.env.example` nach `.env` und passen Sie an:
 
-## Deploy on Vercel
+| Variable | Beschreibung |
+|----------|-------------|
+| `DATABASE_URL` | SQLite (lokal) oder PostgreSQL (Produktion) |
+| `ADMIN_EMAIL` / `ADMIN_PASSWORD` | Admin-Zugang |
+| `RESEND_API_KEY` | E-Mail-Versand (optional, simuliert ohne Key) |
+| `EMAIL_FROM` | Absender-Adresse |
+| `NEXT_PUBLIC_BASE_URL` | Website-URL für E-Mail-Links |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deployment (Vercel + GitHub)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Repository auf GitHub pushen
+2. In Vercel importieren
+3. Umgebungsvariablen setzen
+4. Für Produktion: PostgreSQL (z.B. Neon/Supabase) statt SQLite
+
+## Morgen ergänzen
+
+- [ ] Domain & E-Mail vom Kunden
+- [ ] Echte Fotos (AI) statt Stock-Bilder
+- [ ] Impressum-Daten vervollständigen

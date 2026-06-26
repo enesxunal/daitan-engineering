@@ -1,0 +1,82 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum BookingStatus {
+  CONFIRMED
+  CANCELLED
+  COMPLETED
+}
+
+model Admin {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+}
+
+model BookingMonth {
+  id     String  @id @default(cuid())
+  year   Int
+  month  Int
+  isOpen Boolean @default(false)
+
+  @@unique([year, month])
+}
+
+model DayOverride {
+  id        String   @id @default(cuid())
+  date      DateTime @unique
+  isClosed  Boolean  @default(false)
+  openTime  String?
+  closeTime String?
+  openTime2 String?
+  closeTime2 String?
+}
+
+model Holiday {
+  id   String   @id @default(cuid())
+  date DateTime @unique
+  name String
+}
+
+model WeeklySchedule {
+  id         String  @id @default(cuid())
+  dayOfWeek  Int     @unique
+  isOpen     Boolean @default(true)
+  openTime   String  @default("08:00")
+  closeTime  String  @default("17:00")
+  openTime2  String?
+  closeTime2 String?
+}
+
+model SiteSettings {
+  id            String @id @default("default")
+  businessEmail String @default("info@daitan-engineering.de")
+  businessPhone String @default("01573 7657704")
+  businessName  String @default("Daitan Engineering")
+}
+
+model Booking {
+  id          String        @id @default(cuid())
+  firstName   String
+  lastName    String
+  phone       String
+  email       String
+  serviceType String
+  date        DateTime
+  startTime   String
+  endTime     String
+  status      BookingStatus @default(CONFIRMED)
+  cancelToken String        @unique @default(cuid())
+  manageToken String        @unique @default(cuid())
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  @@index([date, startTime, status])
+}
