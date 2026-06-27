@@ -1,10 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import { BrandLogo } from "./BrandLogo";
 
 const links = [
   { href: "/", label: "Startseite" },
@@ -27,17 +27,8 @@ export function Header() {
         <span className="hidden sm:inline">Daitan Engineering · GTÜ Kfz-Prüfstelle Wesseling</span>
         <span className="sm:hidden">Daitan Engineering · GTÜ Wesseling</span>
       </div>
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-2.5 sm:py-3">
-        <Link href="/" className="flex items-center shrink-0 -ml-2 md:-ml-4">
-          <Image
-            src="/gtu-logo.svg"
-            alt="GTÜ Logo"
-            width={160}
-            height={32}
-            className="h-7 w-auto sm:h-8"
-            priority
-          />
-        </Link>
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-2.5 sm:py-3">
+        <BrandLogo variant="header" />
 
         <nav className="hidden md:flex items-center gap-6">
           {links.map((link) => (
@@ -60,7 +51,7 @@ export function Header() {
         </nav>
 
         <button
-          className="md:hidden p-2 -mr-2 text-brand-grey"
+          className="md:hidden p-2 -mr-2 text-brand-grey shrink-0"
           onClick={() => setOpen(!open)}
           aria-label={open ? "Menü schließen" : "Menü öffnen"}
           aria-expanded={open}

@@ -1,20 +1,16 @@
 import Link from "next/link";
-import Image from "next/image";
 import { MapPin, Phone, Clock, Mail } from "lucide-react";
 import { BUSINESS, OPENING_HOURS } from "@/lib/constants";
+import { BrandLogo } from "./BrandLogo";
 
 export function Footer() {
   return (
     <footer className="bg-brand-grey text-white mt-16">
       <div className="mx-auto max-w-6xl px-4 py-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         <div>
-          <Image
-            src="/gtu-logo-white.svg"
-            alt="GTÜ Logo"
-            width={140}
-            height={28}
-            className="mb-4 -ml-1"
-          />
+          <div className="mb-4">
+            <BrandLogo variant="footer" asLink={false} />
+          </div>
           <p className="text-sm text-white/80 leading-relaxed">
             {BUSINESS.name}
             <br />

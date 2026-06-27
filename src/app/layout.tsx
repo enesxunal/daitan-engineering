@@ -16,7 +16,13 @@ export const metadata: Metadata = {
   },
   description:
     "Amtliche Kfz-Hauptuntersuchung (HU/AU) in Wesseling. Online-Terminbuchung bei Ihrer GTÜ Kfz-Prüfstelle.",
-  icons: { icon: "/favicon.svg" },
+  icons: {
+    icon: [
+      { url: "/gtu-favicon.svg", type: "image/svg+xml" },
+    ],
+    shortcut: "/gtu-favicon.svg",
+    apple: "/gtu-favicon.svg",
+  },
 };
 
 export const viewport = {
